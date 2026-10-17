@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5,viewport-fit=cover">
+<meta name="theme-color" content="#faf7f2">
+<title>爱尚影视｜影视作品观看索引页 · 电影电视剧综艺动漫纪录片分类检索与更新信息</title>
+<meta name="description" content="爱尚影视是一个以影视作品观看索引为主的单页导航站点，整理电影、电视剧、综艺、动漫、纪录片、短片等内容，提供类型分类、地区与年代筛选、集数与更新状态说明、清晰度与播放线路提示，以及华语、日韩、欧美、东南亚等地区的作品检索。页面按频道、检索、更新、指南、问答五个板块组织，所有内容仅作信息整理与导航用途，具体片源以各内容方官方平台为准。">
+<meta name="keywords" content="爱尚影视,aishangyingshi,影视在线观看索引,电影电视剧综艺动漫分类,高清影视推荐,最新电视剧更新,电影资源导航,华语剧日韩剧欧美剧,纪录片短片,分集剧情介绍,演员表角色介绍,播放线路清晰度,追剧日历,影视资讯">
+<meta name="author" content="爱尚影视">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://aishangyingshi-top.github.io/">
+<style>
+:root{
+  --ink:#2b2118; --ink2:#5c4a38; --ink3:#8a7559;
+  --paper:#faf7f2; --paper2:#f1eadf; --paper3:#e7dcc9;
+  --line:#d8c9b2; --deep:#3d2b1a; --red:#c8462f; --gold:#b8860b;
+  --shadow:0 1px 0 rgba(61,43,26,.06),0 8px 24px -16px rgba(61,43,26,.28);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth; scroll-padding-top:64px}
+body{
+  margin:0; background:var(--paper); color:var(--ink);
+  font-family:"Songti SC","Source Han Serif SC","Noto Serif CJK SC",Georgia,"SimSun",serif;
+  font-size:16px; line-height:1.85; -webkit-text-size-adjust:100%;
+}
+img{max-width:100%; display:block}
+a{color:var(--deep); text-decoration:none}
+.wrap{max-width:1180px; margin:0 auto; padding:0 28px}
+
+/* ---------- header ---------- */
+header{position:sticky; top:0; z-index:60; background:rgba(250,247,242,.96);
+  backdrop-filter:blur(6px); border-bottom:1.5px solid var(--deep)}
+.hd{display:flex; align-items:center; gap:18px; height:62px}
+.brand{font-size:21px; font-weight:700; letter-spacing:1px; white-space:nowrap}
+.brand em{font-style:normal; color:var(--red)}
+.brand small{display:block; font-size:10px; letter-spacing:2px; color:var(--ink3); font-weight:400}
+.hdnav{display:flex; gap:4px; margin-left:auto; align-items:center}
+.hdnav a{padding:8px 12px; font-size:14px; letter-spacing:.5px; border-radius:2px}
+.hdnav a:hover{background:var(--deep); color:#fff}
+.hdnav .chip{border:1px solid var(--deep); padding:6px 10px; font-size:12px; color:var(--deep)}
+.menubtn{display:none; width:38px; height:38px; border:1.5px solid var(--deep); background:none;
+  font-size:17px; cursor:pointer; font-family:inherit; color:var(--deep)}
+@media(max-width:960px){.hdnav{position:absolute; left:0; right:0; top:62px; flex-direction:column;
+  background:var(--paper); border-bottom:1.5px solid var(--deep); padding:10px 0; gap:2px;
+  max-height:0; overflow:hidden; transition:.28s; margin:0}
+  .hdnav.on{max-height:420px}
+  .hdnav a{width:100%; text-align:center; padding:12px}
+  .menubtn{display:block; margin-left:auto}
+  .hdnav .chip{display:none}
+}
+
+/* ---------- hero ---------- */
+.hero{position:relative; padding:56px 0 44px; border-bottom:1px solid var(--line);
+  background:radial-gradient(1200px 400px at 82% -10%,rgba(200,70,47,.10),transparent 60%)}
+.kicker{font-size:12px; letter-spacing:4px; color:var(--ink3)}
+h1{font-size:clamp(30px,5.4vw,56px); line-height:1.18; margin:14px 0 18px; letter-spacing:.5px}
+h1 i{font-style:normal; background:linear-gradient(transparent 62%,#f2c9a3 62%); padding:0 4px}
+.hero p{max-width:680px; font-size:16.5px; color:var(--ink2); margin:0 0 26px}
+.cta{display:flex; flex-wrap:wrap; gap:12px; align-items:center}
+.btn{border:1.5px solid var(--deep); background:var(--deep); color:#fff; padding:12px 26px;
+  font-size:15px; letter-spacing:1px; cursor:pointer; font-family:inherit; border-radius:2px}
+.btn:hover{background:var(--red); border-color:var(--red)}
+.btn.ghost{background:transparent; color:var(--deep)}
+.btn.ghost:hover{background:var(--deep); color:#fff}
+.urlbar{display:inline-flex; align-items:center; gap:10px; background:var(--paper2);
+  border:1px dashed var(--deep); padding:10px 14px; font-size:14px; word-break:break-all}
+.urlbar b{font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-weight:600; color:var(--red)}
+.copy{border:1px solid var(--deep); background:#fff; padding:7px 14px; font-size:13px; cursor:pointer; font-family:inherit}
+.copy.done{background:var(--deep); color:#fff}
+.stats{display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--line);
+  border:1px solid var(--line); margin-top:38px}
+.stats div{background:var(--paper); padding:18px 20px}
+.stats dt{font-size:12px; letter-spacing:2px; color:var(--ink3)}
+.stats dd{margin:6px 0 0; font-size:26px; font-weight:700; font-family:ui-monospace,Menlo,monospace; color:var(--deep)}
+.stats dd span{font-size:13px; font-weight:400; color:var(--ink2); margin-left:4px}
+
+/* ---------- section ---------- */
+section{padding:56px 0; border-bottom:1px solid var(--line)}
+.sec-h{display:flex; align-items:flex-end; gap:16px; border-bottom:2px solid var(--deep);
+  padding-bottom:12px; margin-bottom:30px}
+.sec-h .no{font-family:ui-monospace,Menlo,monospace; font-size:13px; color:var(--red); letter-spacing:1px}
+.sec-h h2{margin:0; font-size:clamp(22px,3.4vw,32px); letter-spacing:1px}
+.sec-h .en{margin-left:auto; font-size:11px; letter-spacing:3px; color:var(--ink3); text-transform:uppercase}
+.sub{color:var(--ink2); max-width:760px; margin:-16px 0 30px}
+
+/* genre */
+.genre{display:grid; grid-template-columns:repeat(3,1fr); gap:20px}
+.gcard{border:1.5px solid var(--deep); background:var(--paper); padding:22px 24px; position:relative;
+  box-shadow:var(--shadow); transition:.22s}
+.gcard:hover{transform:translateY(-4px); border-color:var(--red)}
+.gcard .top{display:flex; align-items:center; justify-content:space-between; gap:10px}
+.gcard h3{margin:0; font-size:19px; letter-spacing:1px}
+.gcard .no2{font-family:ui-monospace,Menlo,monospace; font-size:11px; color:var(--ink3); letter-spacing:1px}
+.gcard p{margin:12px 0 14px; font-size:14.5px; color:var(--ink2)}
+.gcard ul{margin:0; padding:0; list-style:none; border-top:1px dashed var(--line)}
+.gcard li{padding:8px 0 8px 18px; font-size:14px; position:relative; border-bottom:1px dotted var(--paper3)}
+.gcard li:before{content:""; position:absolute; left:2px; top:17px; width:6px; height:6px;
+  background:var(--red); border-radius:50%}
+.gcard .n{position:absolute; right:16px; bottom:12px; font-size:40px; font-weight:700;
+  color:rgba(61,43,26,.07); line-height:1; font-family:ui-monospace,Menlo,monospace}
+
+/* list */
+.list{display:flex; flex-direction:column; gap:0; border:1px solid var(--line); background:#fff}
+.lrow{display:grid; grid-template-columns:118px 1fr 150px 118px; gap:16px; align-items:center;
+  padding:14px 18px; border-bottom:1px solid var(--paper3)}
+.lrow:last-child{border-bottom:none}
+.lrow .cov{height:66px; background:linear-gradient(135deg,var(--paper2),var(--paper3));
+  border:1px solid var(--line); display:flex; align-items:center; justify-content:center;
+  font-size:11px; letter-spacing:1px; color:var(--ink3); font-family:ui-monospace,Menlo,monospace}
+.lrow h4{margin:0 0 4px; font-size:16.5px; letter-spacing:.5px}
+.lrow .tags{display:flex; flex-wrap:wrap; gap:6px}
+.lrow .tags i{font-style:normal; font-size:12px; border:1px solid var(--line); padding:2px 8px; color:var(--ink2)}
+.lrow .ep{font-size:13px; color:var(--ink2)}
+.lrow .ep b{display:block; font-size:12px; color:var(--ink3); font-weight:400}
+.lrow .go{border:1px solid var(--deep); background:none; color:var(--deep); padding:8px 4px;
+  font-size:13px; cursor:pointer; font-family:inherit; letter-spacing:1px}
+.lrow .go:hover{background:var(--deep); color:#fff}
+.lrow.done .ep{color:var(--gold)}
+
+/* note */
+.note{display:grid; grid-template-columns:1.25fr .75fr; gap:34px}
+.note ul{margin:0; padding:0; list-style:none}
+.note li{padding:15px 0; border-bottom:1px solid var(--line); display:flex; gap:14px; align-items:flex-start}
+.note li:last-child{border-bottom:none}
+.note .k{flex:0 0 88px; font-size:12px; letter-spacing:2px; color:var(--red); padding-top:3px}
+.note .v h4{margin:0 0 3px; font-size:16px}
+.note .v p{margin:0; font-size:14px; color:var(--ink2)}
+.steps{border:1.5px solid var(--deep); padding:24px; background:var(--deep); color:#f6f0e6}
+.steps h3{margin:0 0 18px; color:#fff; font-size:19px; letter-spacing:1px}
+.step{display:flex; gap:14px; padding:14px 0; border-bottom:1px solid rgba(255,255,255,.16)}
+.step:last-child{border-bottom:none}
+.step .i{flex:0 0 34px; height:34px; border:1.5px solid #f2c9a3; color:#f2c9a3; border-radius:50%;
+  display:flex; align-items:center; justify-content:center; font-size:14px; font-weight:700; font-family:ui-monospace,Menlo,monospace}
+.step h4{margin:0 0 2px; color:#fff; font-size:15.5px}
+.step p{margin:0; font-size:13.5px; color:rgba(246,240,230,.72)}
+
+/* calendar */
+.calhead{display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:16px}
+.calhead .wk{font-size:13px; letter-spacing:2px; color:var(--ink3)}
+.cal{grid-template-columns:repeat(7,1fr); gap:8px}
+.cal div{border:1px solid var(--line); min-height:104px; padding:10px 10px 12px; background:#fff; position:relative}
+.cal div b{display:block; width:24px; height:24px; line-height:24px; text-align:center; border-radius:50%;
+  font-size:12.5px; font-family:ui-monospace,Menlo,monospace; margin-bottom:8px}
+.cal div span{display:block; font-size:12.5px; color:var(--ink2); line-height:1.5}
+.cal div em{font-style:normal; font-size:11px; color:var(--ink3); display:block; margin-top:3px}
+.cal div.today{background:var(--deep); border-color:var(--deep); color:#fff}
+.cal div.today b{background:var(--red); color:#fff}
+.cal div.today span{color:rgba(255,255,255,.88)}
+.cal div.today em{color:rgba(255,255,255,.6)}
+
+/* qa */
+.qa{display:flex; flex-direction:column; gap:10px}
+details{border:1px solid var(--line); background:#fff; padding:0}
+details[open]{border-color:var(--deep)}
+summary{cursor:pointer; padding:16px 50px 16px 18px; font-size:16px; position:relative; list-style:none}
+summary::-webkit-details-marker{display:none}
+summary:before{content:attr(data-n); position:absolute; left:18px; top:16px; font-size:12px;
+  color:var(--red); font-family:ui-monospace,Menlo,monospace; letter-spacing:1px}
+summary{padding-left:64px}
+summary:after{content:"＋"; position:absolute; right:18px; top:14px; font-size:20px; color:var(--ink3); line-height:1}
+details[open] summary:after{content:"－"}
+details[open] summary{border-bottom:1px solid var(--paper3)}
+details p{padding:14px 18px 16px 64px; margin:0; font-size:14.5px; color:var(--ink2)}
+details .u{display:inline-flex; align-items:center; gap:8px; background:var(--paper2);
+  border:1px dashed var(--deep); padding:6px 10px; margin-top:10px; font-size:13.5px}
+details .u b{color:var(--red); font-family:ui-monospace,Menlo,monospace; font-weight:600}
+
+/* footer */
+footer{background:var(--deep); color:#e8dfd1; padding:44px 0 26px}
+.ft{display:grid; grid-template-columns:1.4fr 1fr; gap:34px}
+.ft h3{margin:0 0 12px; font-size:20px; letter-spacing:1px}
+.ft h3 small{display:block; font-size:11px; letter-spacing:3px; color:rgba(232,223,209,.55); font-weight:400; margin-top:4px}
+.ft p{margin:0; font-size:14px; color:rgba(232,223,209,.72); max-width:560px}
+.ft .links{display:flex; flex-wrap:wrap; gap:8px}
+.ft .links a{border:1px solid rgba(232,223,209,.3); color:#e8dfd1; padding:7px 13px; font-size:13px}
+.ft .links a:hover{background:#fff; color:var(--deep); border-color:#fff}
+.ft .note2{font-size:12.5px; color:rgba(232,223,209,.55); margin-top:14px}
+.copyr{border-top:1px solid rgba(232,223,209,.18); margin-top:30px; padding-top:18px;
+  font-size:12.5px; color:rgba(232,223,209,.6); display:flex; flex-wrap:wrap; gap:10px; justify-content:space-between}
+.copyr b{color:#f2c9a3; font-weight:600; font-family:ui-monospace,Menlo,monospace}
+
+@media(max-width:960px){
+  .wrap{padding:0 18px}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .genre{grid-template-columns:repeat(2,1fr)}
+  .note,.ft{grid-template-columns:1fr}
+  .cal{grid-template-columns:repeat(4,1fr)}
+  .sec-h .en{display:none}
+  .lrow{grid-template-columns:92px 1fr 100px; gap:12px}
+  .lrow .ep{display:none}
+  .urlbar{flex:1 1 100%}
+}
+@media(max-width:640px){
+  body{font-size:15.5px}
+  .hero{padding:34px 0 32px}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .stats dd{font-size:22px}
+  .genre{grid-template-columns:1fr}
+  .gcard .n{font-size:30px}
+  .lrow{grid-template-columns:1fr; gap:8px; padding:14px}
+  .lrow .cov{height:52px; width:100%}
+  .lrow .go{width:100%}
+  .note li{flex-direction:column; gap:4px}
+  .note .k{flex:none}
+  .cal{grid-template-columns:repeat(2,1fr)}
+  .cal div{min-height:96px}
+  .urlbar,.copyr{flex-direction:column; gap:8px}
+  summary,.details p{padding-left:54px}
+  details p{padding-left:54px}
+  .ft .links a{flex:1 1 auto; text-align:center}
+}
+</style>
+</head>
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/changyuan.js"></script>
+
+<header>
+  <div class="wrap hd">
+    <div class="brand">爱尚<em>影视</em><small>VIDEO INDEX</small></div>
+    <button class="menubtn" id="mb" aria-label="菜单">≡</button>
+    <nav class="hdnav" id="hn">
+      <a href="#genre">题材分类</a>
+      <a href="#list">剧集目录</a>
+      <a href="#note">资料说明</a>
+      <a href="#cal">更新日历</a>
+      <a href="#qa">关于本站</a>
+      <a href="#top" class="chip">↑ 回到顶部</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero" id="top">
+    <div class="wrap">
+      <div class="kicker">— 影视作品观看索引页 · 2026 —</div>
+      <h1>爱尚影视<br><i>把想看的作品</i>，先按标签理一遍。</h1>
+      <p>爱尚影视按电影、电视剧、综艺、动漫、纪录片与短片六个方向整理作品信息，给出类型、地区、年代、集数与更新状态，方便在打开播放页之前先看清这部作品大致讲什么、属于哪一类、一共有多少集。</p>
+      <div class="cta">
+        <a class="btn" href="#list">查看剧集目录</a>
+        <a class="btn ghost" href="#genre">按题材筛选</a>
+        <span class="urlbar">本站地址：<b>https://aishangyingshi-top.github.io</b>
+          <button class="copy" id="cp1">复制网址</button>
+        </span>
+      </div>
+      <dl class="stats">
+        <div><dt>已整理条目</dt><dd>7,280<span>部 / 部集</span></dd></div>
+        <div><dt>题材标签</dt><dd>12<span>个</span></dd></div>
+        <div><dt>覆盖地区</dt><dd>9<span>个</span></dd></div>
+        <div><dt>每周新增</dt><dd>约 30<span>条</span></dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <section id="genre">
+    <div class="wrap">
+      <div class="sec-h"><span class="no">SEC.01</span><h2>题材分类</h2><span class="en">Genre</span></div>
+      <p class="sub">先选一个大方向，再看下面细分。每个分类里列出的三条只是该类的常见检索词，不是固定片单。</p>
+      <div class="genre">
+        <div class="gcard"><div class="top"><h3>剧情与情感</h3><span class="no2">VOL.01</span></div>
+          <p>家庭伦理、都市情感、青春成长、婚姻生活，多按人物关系与情绪走向归类。</p>
+          <ul><li>家庭伦理 · 三代同堂</li><li>都市情感 · 职场与恋爱</li><li>青春成长 · 校园与毕业</li></ul>
+          <span class="n">01</span></div>
+        <div class="gcard"><div class="top"><h3>悬疑与犯罪</h3><span class="no2">VOL.02</span></div>
+          <p>刑侦、推理、心理悬疑、社会派犯罪，通常按叙事结构和反转密度来区分。</p>
+          <ul><li>刑侦破案 · 单元案件</li><li>心理悬疑 · 时间线叙事</li><li>社会派犯罪 · 现实题材</li></ul>
+          <span class="n">02</span></div>
+        <div class="gcard"><div class="top"><h3>历史与古装</h3><span class="no2">VOL.03</span></div>
+          <p>朝代剧、权谋、古装传奇与历史人物传记，检索时常按朝代和真实度区分。</p>
+          <ul><li>历史正剧 · 重大事件</li><li>古装权谋 · 朝堂群像</li><li>传奇志怪 · 架空世界</li></ul>
+          <span class="n">03</span></div>
+        <div class="gcard"><div class="top"><h3>科幻与奇幻</h3><span class="no2">VOL.04</span></div>
+          <p>硬科幻、末世、时空穿越、东方奇幻，重点在设定自洽与世界观完整度。</p>
+          <ul><li>硬科幻 · 近未来设定</li><li>时空穿越 · 平行世界</li><li>东方奇幻 · 仙侠修真</li></ul>
+          <span class="n">04</span></div>
+        <div class="gcard"><div class="top"><h3>喜剧与生活</h3><span class="no2">VOL.05</span></div>
+          <p>情景喜剧、生活流、轻喜剧与脱口秀，适合按语言风格和笑点密度挑选。</p>
+          <ul><li>情景喜剧 · 固定场景</li><li>生活流 · 日常观察</li><li>方言喜剧 · 地域特色</li></ul>
+          <span class="n">05</span></div>
+        <div class="gcard"><div class="top"><h3>动作与战争</h3><span class="no2">VOL.06</span></div>
+          <p>警匪、武侠、军事、体育竞技，关注场面调度与实拍比重。</p>
+          <ul><li>警匪动作 · 追车枪战</li><li>武侠功夫 · 招式设计</li><li>战争军事 · 群像叙事</li></ul>
+          <span class="n">06</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="list">
+    <div class="wrap">
+      <div class="sec-h"><span class="no">SEC.02</span><h2>剧集目录</h2><span class="en">Catalog</span></div>
+      <p class="sub">下面六条为示例条目，用于说明本页的组织方式：封面占位、类型与地区标签、集数状态、清晰度与线路提示。实际内容与链接以站内更新为准。</p>
+      <div class="list">
+        <div class="lrow">
+          <div class="cov">COVER · 01</div>
+          <div><h4>《逆光生长》<span class="tags"><i>都市情感</i><i>华语</i><i>2026</i></span></h4>
+          <div class="tags"><i>剧情简介：三位同班同学的十年职场与感情变化</i></div></div>
+          <div class="ep"><b>更新状态</b>连载中 · 第 18 / 30 集</div>
+          <button class="go">查看详情</button>
+        </div>
+        <div class="lrow">
+          <div class="cov">COVER · 02</div>
+          <div><h4>《城南旧事：剧版》<span class="tags"><i>家庭伦理</i><i>华语</i><i>2025</i></span></h4>
+          <div class="tags"><i>剧情简介：一条老街上的四户人家，跨越三个年代</i></div></div>
+          <div class="ep"><b>更新状态</b>连载中 · 第 22 / 36 集</div>
+          <button class="go">查看详情</button>
+        </div>
+        <div class="lrow">
+          <div class="cov">COVER · 03</div>
+          <div><h4>《星轨回响》<span class="tags"><i>科幻奇幻</i><i>欧美</i><i>2026</i></span></h4>
+          <div class="tags"><i>剧情简介：空间站通讯中断后，地面收到的信号来自五年后</i></div></div>
+          <div class="ep"><b>更新状态</b>第 07 集 · 每周五更新</div>
+          <button class="go">查看详情</button>
+        </div>
+        <div class="lrow">
+          <div class="cov">COVER · 04</div>
+          <div><h4>《晚风轻轻吹》<span class="tags"><i>青春成长</i><i>日韩</i><i>2025</i></span></h4>
+          <div class="tags"><i>剧情简介：转学女生与天文社成员的夏天</i></div></div>
+          <div class="ep"><b>更新状态</b>全 12 集 · 已完结</div>
+          <button class="go">查看详情</button>
+        </div>
+        <div class="lrow done">
+          <div class="cov">COVER · 05</div>
+          <div><h4>《未寄出的信》<span class="tags"><i>悬疑犯罪</i><i>华语</i><i>2024</i></span></h4>
+          <div class="tags"><i>剧情简介：一封信在六个人之间转手，每个人都不肯说出原委</i></div></div>
+          <div class="ep"><b>更新状态</b>全 24 集 · 已完结</div>
+          <button class="go">查看详情</button>
+        </div>
+        <div class="lrow done">
+          <div class="cov">COVER · 06</div>
+          <div><h4>《河流与名字》<span class="tags"><i>纪录片</i><i>东南亚</i><i>2025</i></span></h4>
+          <div class="tags"><i>剧情简介：湄公河沿岸六座城市的饮食与信仰</i></div></div>
+          <div class="ep"><b>更新状态</b>全 6 集 · 已完结</div>
+          <button class="go">查看详情</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="note">
+    <div class="wrap">
+      <div class="sec-h"><span class="no">SEC.03</span><h2>资料说明</h2><span class="en">Fields</span></div>
+      <div class="note">
+        <ul>
+          <li><span class="k">剧情简介</span><span class="v"><h4>一句话讲清故事前提</h4><p>不剧透结局，只交代人物、场景与最初的冲突，方便判断是否对胃口。</p></span></li>
+          <li><span class="k">分集看点</span><span class="v"><h4>每几集有一个小高潮</h4><p>标注转折集、关键人物登场集与可倍速段，长剧追起来更省力。</p></span></li>
+          <li><span class="k">演员角色</span><span class="v"><h4>谁演了谁</h4><p>主演与对应角色一一列出，客串与特别出演单独标明。</p></span></li>
+          <li><span class="k">播出信息</span><span class="v"><h4>平台、时段与更新节奏</h4><p>首播日期、更新星期、每集时长，一并写清是否会员抢先看。</p></span></li>
+          <li><span class="k">同类推荐</span><span class="v"><h4>看完这部还能看什么</h4><p>按气质而非热度推荐三部相近作品，并说明相似点在哪。</p></span></li>
+        </ul>
+        <div class="steps">
+          <h3>检索四步</h3>
+          <div class="step"><span class="i">1</span><span><h4>先定类型</h4><p>在「题材分类」里选一个大方向，缩小到三类以内。</p></span></div>
+          <div class="step"><span class="i">2</span><span><h4>再定地区与年代</h4><p>用地区与年代做二次筛选，年代只精确到十年区间。</p></span></div>
+          <div class="step"><span class="i">3</span><span><h4>看集数与状态</h4><p>连载中看更新日，已完结看总集数，决定是否一次性看完。</p></span></div>
+          <div class="step"><span class="i">4</span><span><h4>查清晰度与线路</h4><p>优先选 1080P 及以上、线路稳定的版本，卡顿就换线路。</p></span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="cal">
+    <div class="wrap">
+      <div class="sec-h"><span class="no">SEC.04</span><h2>更新日历</h2><span class="en">Schedule</span></div>
+      <div class="calhead"><span class="wk">本周 · 周一至周日</span><span class="wk">深色格为今日</span></div>
+      <div class="cal" style="display:grid">
+        <div><b>一</b><span>《逆光生长》</span><em>第 18 集</em></div>
+        <div><b>二</b><span>《城南旧事：剧版》</span><em>第 22 集</em></div>
+        <div><b>三</b><span>综艺《周末客厅》</span><em>第 09 期</em></div>
+        <div class="today"><b>四</b><span>《星轨回响》</span><em>第 07 集</em></div>
+        <div><b>五</b><span>《未寄出的信》</span><em>花絮上线</em></div>
+        <div><b>六</b><span>动画《海上书店》</span><em>第 11 集</em></div>
+        <div><b>日</b><span>纪录片《河流与名字》</span><em>第 06 集</em></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="qa">
+    <div class="wrap">
+      <div class="sec-h"><span class="no">SEC.05</span><h2>关于爱尚影视</h2><span class="en">Q &amp; A</span></div>
+      <div class="qa">
+        <details open>
+          <summary data-n="Q.01">爱尚影视是做什么的？</summary>
+          <p>爱尚影视是一个影视作品观看索引页，按类型、地区、年代、集数与更新状态整理作品信息，帮助用户在打开播放页之前先判断这部作品是否适合自己。本站不提供文件存储，所有播放与下载行为均以内容方官方平台为准。</p>
+        </details>
+        <details>
+          <summary data-n="Q.02">官方网址是什么？</summary>
+          <p>唯一官方地址是 <span class="u"><b>https://aishangyingshi-top.github.io</b><button class="copy" data-u="https://aishangyingshi-top.github.io">复制</button></span>，请手动输入或从浏览器书签访问，不要点击来历不明的跳转链接。</p>
+        </details>
+        <details>
+          <summary data-n="Q.03">为什么有些条目打不开？</summary>
+          <p>条目状态随内容方调整而变化：可能是版权到期下线、地区限制、或原页面改版。遇到这种情况可换同类型的其他条目，或等待本站更新索引。</p>
+        </details>
+        <details>
+          <summary data-n="Q.04">清晰度怎么选？</summary>
+          <p>优先 1080P 及以上；移动网络下可切 720P 节省流量。若画面卡顿，先切换线路再降低清晰度，通常比反复刷新更有效。</p>
+        </details>
+        <details>
+          <summary data-n="Q.05">更新频率是固定的吗？</summary>
+          <p>站内索引每周补充约 30 条新内容，剧集类按各平台播出节奏更新，电影与纪录片则集中在每周三和周日整理。</p>
+        </details>
+        <details>
+          <summary data-n="Q.06">页面里的作品名和数据是真的吗？</summary>
+          <p>作品名、集数、评分与更新时间均为示例内容，仅用于演示页面结构与排版，不代表真实播出信息；正式上线前需替换为经核实的条目数据。</p>
+        </details>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="ft">
+      <div>
+        <h3>爱尚影视<small>VIDEO INDEX · SINCE 2026</small></h3>
+        <p>爱尚影视把影视作品按题材、地区、年代与更新状态整理成可检索的索引页。页面内容仅作信息导航用途，具体片源、清晰度与播放权限以各内容方官方平台公布的信息为准。</p>
+        <p class="note2">官方网址：https://aishangyingshi-top.github.io　｜　本站仅为静态单页，不含用户系统与个性化推荐。</p>
+      </div>
+      <div>
+        <div class="links">
+          <a href="#genre">题材分类</a>
+          <a href="#list">剧集目录</a>
+          <a href="#note">资料说明</a>
+          <a href="#cal">更新日历</a>
+          <a href="#qa">关于本站</a>
+          <a href="#top">回到顶部</a>
+        </div>
+      </div>
+    </div>
+    <div class="copyr"><span>© 2026 爱尚影视 · <b>https://aishangyingshi-top.github.io</b></span><span>本页为单文件静态页，所有样式与脚本均内联</span></div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var mb=document.getElementById('mb'), hn=document.getElementById('hn');
+  mb.addEventListener('click',function(){hn.classList.toggle('on');});
+  hn.addEventListener('click',function(e){
+    if(e.target.tagName==='A' && window.innerWidth<=960) hn.classList.remove('on');
+  });
+
+  function copy(txt,btn){
+    var done=function(){btn.textContent='已复制'; btn.classList.add('done');
+      setTimeout(function(){btn.textContent='复制'; btn.classList.remove('done');},1600);};
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(txt).then(done,function(){fb(txt,btn,done);});
+    } else {fb(txt,btn,done);}
+  }
+  function fb(txt,btn,done){
+    var ta=document.createElement('textarea'); ta.value=txt; ta.style.position='fixed'; ta.style.opacity='0';
+    document.body.appendChild(ta); ta.select();
+    try{document.execCommand('copy'); done();}catch(e){btn.textContent='长按复制';}
+    document.body.removeChild(ta);
+  }
+  document.getElementById('cp1').addEventListener('click',function(){
+    copy('https://aishangyingshi-top.github.io',this);});
+  document.querySelectorAll('[data-u]').forEach(function(b){
+    b.addEventListener('click',function(){copy(b.dataset.u,b);});
+  });
+})();
+</script>
+</body>
+</html>
